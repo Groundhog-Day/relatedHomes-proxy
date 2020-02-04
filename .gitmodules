@@ -1,3 +1,6 @@
 [submodule "Related-Homes"]
 	path = Related-Homes
 	url = https://github.com/9-airbnb-again/Related-Homes.git
+[submodule "air-carousel"]
+	path = air-carousel
+	url = https://github.com/9-airbnb-again/air-carousel.git
