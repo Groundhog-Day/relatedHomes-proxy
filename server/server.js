@@ -9,15 +9,12 @@ app.get(
   (req, res) => {
     axios({
       method: 'GET',
-      // url: `localhost:1337/api/${Math.ceil(Math.random() * 100)}`,
       url: `http://localhost:1337` + req.url,
     })
       .then((innerRes) => {
         console.log(innerRes.data);
-        // innerRes.send(innerRes.data)
         res.writeHead(200);
         res.write(JSON.stringify(innerRes.data))
-        // innerRes.send('Hello Proxy GW Server!')
         res.end()
       })
       .catch((err) => {
@@ -26,6 +23,27 @@ app.get(
         res.end()
       });
   })
+  
+app.get(
+  '/v1/api/:house/reviews',
+  (req, res) => {
+    axios({
+      method: 'GET',
+      url: `http://localhost:2020` + req.url,
+    })
+      .then((innerRes) => {
+        console.log(innerRes.data);
+        res.writeHead(200);
+        res.write(JSON.stringify(innerRes.data))
+        res.end()
+      })
+      .catch((err) => {
+        console.log(err);
+        res.writeHead(500);
+        res.end()
+      });
+  })
+
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
